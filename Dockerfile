@@ -1,49 +1,40 @@
-# LifeLine AI - Spaces-ready Dockerfile
-FROM node:20-slim
+# LifeLine AI - OpenEnv Phase 1 Validator Dockerfile
+# Optimized for Backend-only compliance to bypass "HTML instead of JSON" errors
+FROM python:3.11-slim
 
 LABEL maintainer="LifeLine Team" \
-      org.opencontainers.image.title="LifeLine AI" \
-      description="Next.js frontend with optional Python FastAPI backend (Hugging Face Spaces ready)"
+      org.opencontainers.image.title="LifeLine AI - Phase 1 Backend" \
+      description="Backend-only deployment for OpenEnv Phase 1 validation"
 
+# Environment variables
 ENV PYTHONUNBUFFERED=1 \
-    DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive \
+    NODE_ENV=production
 
-# Root workspace
+# Workspace setup
 WORKDIR /app
 
-# Install system deps
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-         python3 python3-pip python3-venv ca-certificates curl build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# Install system build dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy entire repo first
+# Copy the entire codebase
 COPY . .
 
-# Move into frontend folder
-WORKDIR /app/lifeline-ai
-
-# Install ALL dependencies (including devDependencies needed for build)
-# NODE_ENV is NOT set to production here — that would skip devDeps and break the build
-RUN npm ci --include=dev --no-audit --no-fund
-
-# Build frontend
-RUN npm run build
-
-# Install backend dependencies if available (using virtual environment)
-WORKDIR /app
-COPY requirements.txt .
+# Virtual Environment implementation (compliant with modern Linux distros)
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
+# Install Python requirements
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Expose HF Space port
+# Expose Hugging Face Space port
 EXPOSE 7860
 
-# Set production mode at runtime only (not at build time)
-ENV NODE_ENV=production
-
-# Run backend as the primary app for OpenEnv validation
+# --- Phase 1 Specific ---
+# We ONLY start the FastAPI backend on port 7860.
+# No Next.js started, no shell-redirection, no background processes.
 CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "7860"]
