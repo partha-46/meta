@@ -7,14 +7,23 @@ from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
+import sys
+# Ensure project root is in path for environment and models
+sys.path.append(os.getcwd())
+
+from environment import MediRouteEnv
+from models import Action, Observation, StepResult
+
 # Import the existing inference runner so we can reuse run_episode
 try:
-    # inference.py lives at project root and exports run_episode
     import inference
 except Exception:
     inference = None
 
 app = FastAPI(title="LifeLine AI API", version="1.0.0")
+
+# Global environment instance for the OpenEnv validator
+env = MediRouteEnv()
 
 # Configure logging for startup visibility
 logger = logging.getLogger("lifeline.backend")
@@ -44,6 +53,41 @@ async def home():
 @app.get("/health")
 def health() -> Dict[str, str]:
     return {"status": "ok", "project": "LifeLine AI"}
+
+
+# ── OpenEnv Endpoints ──────────────────────────────────────────────────────
+
+class ResetRequest(BaseModel):
+    difficulty: str = "easy"
+
+
+@app.post("/reset")
+async def reset(req: ResetRequest = ResetRequest()) -> Observation:
+    """Reset the environment to a fresh state with the given difficulty."""
+    logger.info(f"OpenEnv: resetting to difficulty={req.difficulty}")
+    obs = env.reset(difficulty=req.difficulty)
+    return obs
+
+
+@app.post("/step")
+async def step(action: Action) -> StepResult:
+    """Advance the environment by one step using the provided action."""
+    logger.info(f"OpenEnv: step with action={action.action_type}")
+    try:
+        result = env.step(action)
+        return result
+    except Exception as e:
+        logger.error(f"OpenEnv step failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/state")
+async def get_state() -> Observation:
+    """Return the current snapshot of the environment's observation."""
+    try:
+        return env.state()
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 @app.post("/run-benchmark")

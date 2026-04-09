@@ -45,5 +45,5 @@ EXPOSE 7860
 # Set production mode at runtime only (not at build time)
 ENV NODE_ENV=production
 
-# Run backend + frontend
-CMD ["sh", "-c", "uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 2>/dev/null & cd /app/lifeline-ai && exec npm run start -- -p 7860"]
+# Run backend as the primary app for OpenEnv validation
+CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "7860"]
