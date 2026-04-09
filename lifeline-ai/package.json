@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "clean": "rm -rf node_modules package-lock.json .next",
+    "reinstall": "npm run clean && npm install",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
