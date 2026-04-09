@@ -59,3 +59,7 @@ async def state():
 @app.get("/health")
 async def health():
     return {"status": "ok"}
+
+@app.get("/")
+async def root():
+    return {"status": "active", "api": "OpenEnv Compliance API"}
