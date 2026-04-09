@@ -11,3 +11,9 @@ __pycache__/
 .idea/
 .vscode/
 *.log
+
+# Critical: exclude local node_modules and build cache
+# These contain Mac M1 (darwin-arm64) native binaries that break Linux Docker builds
+lifeline-ai/node_modules/
+lifeline-ai/.next/
+node_modules/
