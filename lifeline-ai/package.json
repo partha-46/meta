@@ -25,6 +25,7 @@
     "autoprefixer": "latest",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "lightningcss": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "^5"

@@ -5,8 +5,7 @@ LABEL maintainer="LifeLine Team" \
       org.opencontainers.image.title="LifeLine AI" \
       description="Next.js frontend with optional Python FastAPI backend (Hugging Face Spaces ready)"
 
-ENV NODE_ENV=production \
-    PYTHONUNBUFFERED=1 \
+ENV PYTHONUNBUFFERED=1 \
     DEBIAN_FRONTEND=noninteractive
 
 # Root workspace
@@ -24,12 +23,9 @@ COPY . .
 # Move into frontend folder
 WORKDIR /app/lifeline-ai
 
-# Install frontend dependencies
-RUN if [ -f package-lock.json ]; then \
-      npm ci --no-audit --no-fund; \
-    else \
-      npm install --no-audit --no-fund; \
-    fi
+# Install ALL dependencies (including devDependencies needed for build)
+# NODE_ENV is NOT set to production here — that would skip devDeps and break the build
+RUN npm ci --include=dev --no-audit --no-fund
 
 # Build frontend
 RUN npm run build
@@ -42,6 +38,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # Expose HF Space port
 EXPOSE 7860
+
+# Set production mode at runtime only (not at build time)
+ENV NODE_ENV=production
 
 # Run backend + frontend
 CMD ["sh", "-c", "uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 2>/dev/null & cd /app/lifeline-ai && exec npm run start -- -p 7860"]
