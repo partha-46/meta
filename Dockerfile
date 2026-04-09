@@ -14,7 +14,7 @@ WORKDIR /app
 # Install system deps
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-         python3 python3-pip ca-certificates curl build-essential \
+         python3 python3-pip python3-venv ca-certificates curl build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy entire repo first
@@ -30,9 +30,12 @@ RUN npm ci --include=dev --no-audit --no-fund
 # Build frontend
 RUN npm run build
 
-# Install backend dependencies if available
+# Install backend dependencies if available (using virtual environment)
 WORKDIR /app
 COPY requirements.txt .
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
