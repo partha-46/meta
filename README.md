@@ -102,17 +102,7 @@ Defined in `models.py` (`VALID_ACTION_TYPES`) and mirrored in `openenv.yaml`:
 - `available_specialists: list[str]`
 - `previous_actions: list[str]` (canonical `"<action_type>:<target>"`)
 
----
-title: "MediRoute OpenEnv"
-emoji: "🏥"
-colorFrom: "blue"
-colorTo: "purple"
-sdk: python
-sdk_version: "1.0"
-python_version: "3.11"
-app_file: app.py
-pinned: false
----
+
 
 # MediRoute OpenEnv
 

@@ -1,13 +1,8 @@
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
 from typing import Any, Dict
-import logging
 
-app = FastAPI(title="LifeLine AI API")
-
-# Configure logging
-logger = logging.getLogger("lifeline.backend")
-logging.basicConfig(level=logging.INFO)
+app = FastAPI()
 
 class Observation(BaseModel):
     symptoms: str
@@ -22,7 +17,6 @@ class StepResponse(BaseModel):
 
 @app.post("/reset")
 async def reset(payload: dict = Body(default={})):
-    logger.info(f"OpenEnv: Received /reset request with payload: {payload}")
     return StepResponse(
         observation=Observation(
             symptoms="Patient reports fever and sore throat",
@@ -36,7 +30,6 @@ async def reset(payload: dict = Body(default={})):
 
 @app.post("/step")
 async def step(payload: dict = Body(default={})):
-    logger.info(f"OpenEnv: Received /step request with payload: {payload}")
     return StepResponse(
         observation=Observation(
             symptoms="updated symptoms",
@@ -50,16 +43,7 @@ async def step(payload: dict = Body(default={})):
 
 @app.get("/state")
 async def state():
-    logger.info("OpenEnv: Received /state request")
     return {
         "status": "active",
         "task": "easy"
     }
-
-@app.get("/health")
-async def health():
-    return {"status": "ok"}
-
-@app.get("/")
-async def root():
-    return {"status": "active", "api": "OpenEnv Compliance API"}
