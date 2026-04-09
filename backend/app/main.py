@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body
 from pydantic import BaseModel
 import sys
 import os
@@ -27,11 +27,11 @@ class ObservationSchema(BaseModel):
     severity: str
     step_count: int
 
-class ResetResponse(BaseModel):
+class StepResponse(BaseModel):
     observation: ObservationSchema
-    reward: float = 0.0
-    done: bool = False
-    info: dict = {}
+    reward: float
+    done: bool
+    info: Dict[str, Any]
 
 # Import the existing inference runner so we can reuse run_episode
 try:
@@ -77,24 +77,22 @@ def health() -> Dict[str, str]:
 # ── OpenEnv Endpoints ──────────────────────────────────────────────────────
 
 @app.post("/reset")
-async def reset():
+async def reset(payload: Dict[str, Any] = Body(default={})):
     """Reset the environment to a fresh state for validation."""
-    logger.info("OpenEnv: Received /reset request")
+    logger.info(f"OpenEnv: Received /reset request with payload: {payload}")
     # Reset internal env
     obs = env.reset(difficulty="easy")
     
     # Map internal observation to validator's expected schema
-    # Map severity_score (float) back to string labels for validator
-    severity_label = "low"
-    if obs.severity_score >= 0.7: severity_label = "high"
-    elif obs.severity_score >= 0.4: severity_label = "moderate"
-
-    return ResetResponse(
+    return StepResponse(
         observation=ObservationSchema(
             symptoms=obs.symptoms,
-            severity=severity_label,
+            severity="unknown", # Phase 1 initial state requirement
             step_count=0
-        )
+        ),
+        reward=0.0,
+        done=False,
+        info={}
     )
 
 
@@ -103,20 +101,20 @@ async def state():
     """Return the current snapshot status."""
     return {
         "status": "active",
-        "current_task": "easy"
+        "task": "easy"
     }
 
 
 @app.post("/step")
-async def step(action: dict):
+async def step(payload: Dict[str, Any] = Body(default={})):
     """Advance the environment using the validator's action dictionary."""
-    logger.info(f"OpenEnv: Received /step request with action: {action}")
+    logger.info(f"OpenEnv: Received /step request with payload: {payload}")
     
     try:
         # Construct internal Action model from dict
         internal_action = Action(
-            action_type=action.get("action_type", "analyze_symptoms"),
-            target=action.get("target")
+            action_type=payload.get("action_type", "analyze_symptoms"),
+            target=payload.get("target")
         )
         result = env.step(internal_action)
         
@@ -125,16 +123,16 @@ async def step(action: dict):
         if result.observation.severity_score >= 0.7: severity_label = "high"
         elif result.observation.severity_score >= 0.4: severity_label = "moderate"
 
-        return {
-            "observation": {
-                "symptoms": result.observation.symptoms,
-                "severity": severity_label,
-                "step_count": result.info.get("step", 1)
-            },
-            "reward": result.reward,
-            "done": result.done,
-            "info": result.info
-        }
+        return StepResponse(
+            observation=ObservationSchema(
+                symptoms=result.observation.symptoms,
+                severity=severity_label,
+                step_count=result.info.get("step", 1)
+            ),
+            reward=result.reward,
+            done=result.done,
+            info=result.info
+        )
     except Exception as e:
         logger.error(f"OpenEnv step failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
