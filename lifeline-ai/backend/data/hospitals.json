@@ -1,0 +1,68 @@
+[
+  {
+    "id": "hosp_city_clinic",
+    "name": "City Clinic",
+    "distance_km": 2.4,
+    "eta_minutes": 9,
+    "rating": 4.6,
+    "specialties": ["General Medicine", "ENT", "Pediatrics"],
+    "availability": "open",
+    "address": "12 Market St, Downtown",
+    "phone": "+1-555-0101",
+    "lat": 12.9721,
+    "lng": 77.5933
+  },
+  {
+    "id": "hosp_downtown_med",
+    "name": "Downtown Medical Center",
+    "distance_km": 3.1,
+    "eta_minutes": 11,
+    "rating": 4.2,
+    "specialties": ["General Medicine", "Diagnostics", "Orthopedics"],
+    "availability": "limited",
+    "address": "88 River Rd, Downtown",
+    "phone": "+1-555-0102",
+    "lat": 12.9699,
+    "lng": 77.5965
+  },
+  {
+    "id": "hosp_westside_heart",
+    "name": "Westside Heart Center",
+    "distance_km": 6.8,
+    "eta_minutes": 18,
+    "rating": 4.8,
+    "specialties": ["Cardiology", "Cath Lab", "ICU"],
+    "availability": "busy",
+    "address": "5 Sunset Ave, Westside",
+    "phone": "+1-555-0201",
+    "lat": 12.9657,
+    "lng": 77.5852
+  },
+  {
+    "id": "hosp_general",
+    "name": "General Hospital",
+    "distance_km": 5.5,
+    "eta_minutes": 16,
+    "rating": 4.1,
+    "specialties": ["Emergency", "General Surgery", "Internal Medicine"],
+    "availability": "open",
+    "address": "200 Main Blvd, Central",
+    "phone": "+1-555-0301",
+    "lat": 12.9764,
+    "lng": 77.6009
+  },
+  {
+    "id": "hosp_northside_icu",
+    "name": "Northside Hospital (ICU)",
+    "distance_km": 7.9,
+    "eta_minutes": 20,
+    "rating": 4.7,
+    "specialties": ["Emergency", "ICU", "Pulmonology"],
+    "availability": "busy",
+    "address": "77 North Ring Rd, Northside",
+    "phone": "+1-555-0401",
+    "lat": 12.9894,
+    "lng": 77.5801
+  }
+]
+

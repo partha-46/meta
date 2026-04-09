@@ -1,0 +1,359 @@
+[
+  {
+    "condition": "Common Cold",
+    "symptoms": "sneezing, runny nose, cough, sore throat, mild fever, congestion",
+    "causes": "Usually caused by viral infections affecting the upper respiratory tract.",
+    "precautions": "Drink warm fluids, rest well, maintain hygiene, and avoid cold exposure.",
+    "see_doctor": "Consult a doctor if symptoms last more than a week or breathing becomes difficult."
+  },
+  {
+    "condition": "Flu",
+    "symptoms": "fever, cough, fatigue, body pain, chills, headache, weakness",
+    "causes": "Caused by the influenza virus and spreads through respiratory droplets.",
+    "precautions": "Take rest, stay hydrated, isolate if contagious, and monitor temperature.",
+    "see_doctor": "See a doctor if fever is very high, weakness is severe, or symptoms worsen."
+  },
+  {
+    "condition": "Pneumonia",
+    "symptoms": "fever, cough, chest pain, shortness of breath, fatigue, chills",
+    "causes": "Caused by bacterial, viral, or fungal infection in the lungs.",
+    "precautions": "Rest, drink fluids, avoid smoking, and monitor breathing closely.",
+    "see_doctor": "Seek immediate medical help if breathing difficulty or chest pain is severe."
+  },
+  {
+    "condition": "Asthma",
+    "symptoms": "wheezing, shortness of breath, chest tightness, cough, difficulty breathing",
+    "causes": "Triggered by allergens, dust, smoke, exercise, or respiratory infections.",
+    "precautions": "Avoid triggers, keep inhaler nearby, and avoid dusty or smoky environments.",
+    "see_doctor": "Seek urgent care if breathing becomes difficult or inhaler does not help."
+  },
+  {
+    "condition": "Bronchitis",
+    "symptoms": "cough, mucus, fatigue, chest discomfort, mild fever, sore throat",
+    "causes": "Usually caused by viral infections or irritation of the airways.",
+    "precautions": "Rest, stay hydrated, avoid smoking, and use steam inhalation if needed.",
+    "see_doctor": "Consult a doctor if cough persists for more than 3 weeks or breathing worsens."
+  },
+  {
+    "condition": "COVID-19",
+    "symptoms": "fever, cough, fatigue, loss of smell, sore throat, body pain, shortness of breath",
+    "causes": "Caused by the SARS-CoV-2 virus and spreads through droplets or close contact.",
+    "precautions": "Isolate, hydrate, monitor oxygen levels if possible, and rest well.",
+    "see_doctor": "Seek medical care if breathing difficulty, chest pain, or low oxygen occurs."
+  },
+  {
+    "condition": "Tuberculosis",
+    "symptoms": "persistent cough, weight loss, night sweats, fever, chest pain, fatigue",
+    "causes": "Caused by Mycobacterium tuberculosis infection, mainly affecting the lungs.",
+    "precautions": "Seek early treatment, avoid spreading infection, and follow medical therapy strictly.",
+    "see_doctor": "See a doctor if cough lasts more than 2 weeks or blood appears in sputum."
+  },
+  {
+    "condition": "Sinusitis",
+    "symptoms": "headache, facial pain, nasal congestion, fever, runny nose, pressure around eyes",
+    "causes": "Usually caused by infection or inflammation of the sinus cavities.",
+    "precautions": "Steam inhalation, hydration, rest, and nasal saline rinses may help.",
+    "see_doctor": "Consult a doctor if symptoms are severe or last more than 10 days."
+  },
+  {
+    "condition": "Migraine",
+    "symptoms": "headache, nausea, vomiting, sensitivity to light, sensitivity to sound, dizziness",
+    "causes": "Can be triggered by stress, lack of sleep, hormonal changes, or certain foods.",
+    "precautions": "Rest in a dark quiet room, stay hydrated, and avoid known triggers.",
+    "see_doctor": "Seek medical help if headache is sudden, severe, or different from usual migraines."
+  },
+  {
+    "condition": "Tension Headache",
+    "symptoms": "headache, pressure around head, neck pain, stress, mild dizziness",
+    "causes": "Often caused by stress, poor posture, eye strain, or muscle tension.",
+    "precautions": "Rest, hydration, posture correction, and stress reduction can help.",
+    "see_doctor": "See a doctor if headaches become frequent or severe."
+  },
+  {
+    "condition": "Hypertension",
+    "symptoms": "headache, dizziness, blurred vision, nosebleeds, chest discomfort",
+    "causes": "Can result from genetics, stress, obesity, high salt intake, or underlying disease.",
+    "precautions": "Reduce salt, exercise, manage stress, and monitor blood pressure regularly.",
+    "see_doctor": "Consult a doctor if blood pressure is consistently high or symptoms worsen."
+  },
+  {
+    "condition": "Hypotension",
+    "symptoms": "dizziness, fainting, weakness, blurred vision, nausea",
+    "causes": "May be caused by dehydration, blood loss, heart problems, or low blood sugar.",
+    "precautions": "Drink fluids, avoid sudden standing, and eat balanced meals.",
+    "see_doctor": "See a doctor if fainting, confusion, or repeated dizziness occurs."
+  },
+  {
+    "condition": "Diabetes",
+    "symptoms": "frequent urination, increased thirst, fatigue, blurred vision, weight loss, hunger",
+    "causes": "Caused by high blood sugar levels due to insulin-related problems.",
+    "precautions": "Control sugar intake, exercise, stay hydrated, and monitor glucose levels.",
+    "see_doctor": "Consult a doctor if symptoms are persistent or sugar levels are abnormal."
+  },
+  {
+    "condition": "Hypoglycemia",
+    "symptoms": "sweating, shaking, hunger, dizziness, weakness, confusion, rapid heartbeat",
+    "causes": "Caused by low blood sugar, often due to skipping meals or diabetes medication.",
+    "precautions": "Take glucose or sugary food immediately and monitor symptoms.",
+    "see_doctor": "Seek urgent help if confusion, unconsciousness, or seizures occur."
+  },
+  {
+    "condition": "Anemia",
+    "symptoms": "fatigue, weakness, pale skin, dizziness, shortness of breath, headache",
+    "causes": "Often caused by iron deficiency, blood loss, or low red blood cell production.",
+    "precautions": "Eat iron-rich foods, stay hydrated, and follow prescribed supplements.",
+    "see_doctor": "Consult a doctor if fatigue is severe or symptoms persist."
+  },
+  {
+    "condition": "Dehydration",
+    "symptoms": "dry mouth, dizziness, fatigue, dark urine, thirst, headache",
+    "causes": "Caused by excessive fluid loss through sweating, vomiting, diarrhea, or poor intake.",
+    "precautions": "Drink oral fluids, rest, and avoid excessive heat exposure.",
+    "see_doctor": "Seek care if confusion, very low urine output, or severe weakness occurs."
+  },
+  {
+    "condition": "Gastroenteritis",
+    "symptoms": "diarrhea, vomiting, stomach pain, nausea, fever, dehydration",
+    "causes": "Usually caused by viral or bacterial infection of the digestive tract.",
+    "precautions": "Drink ORS, eat light foods, rest, and maintain hygiene.",
+    "see_doctor": "See a doctor if there is blood in stool, severe dehydration, or persistent vomiting."
+  },
+  {
+    "condition": "Food Poisoning",
+    "symptoms": "vomiting, diarrhea, stomach cramps, nausea, fever, weakness",
+    "causes": "Caused by contaminated food or drink containing bacteria, viruses, or toxins.",
+    "precautions": "Hydrate well, avoid heavy foods, and rest.",
+    "see_doctor": "Seek medical help if symptoms are severe, prolonged, or involve dehydration."
+  },
+  {
+    "condition": "Acidity",
+    "symptoms": "burning chest pain, stomach discomfort, bloating, sour taste, nausea",
+    "causes": "Often caused by excess stomach acid, spicy foods, stress, or irregular eating habits.",
+    "precautions": "Avoid spicy/oily foods, eat smaller meals, and avoid lying down after eating.",
+    "see_doctor": "Consult a doctor if symptoms are frequent or severe."
+  },
+  {
+    "condition": "Gastritis",
+    "symptoms": "stomach pain, nausea, bloating, vomiting, burning sensation, loss of appetite",
+    "causes": "Caused by irritation or inflammation of the stomach lining.",
+    "precautions": "Avoid alcohol, spicy foods, and take prescribed medication if advised.",
+    "see_doctor": "See a doctor if vomiting blood, black stools, or severe pain occurs."
+  },
+  {
+    "condition": "Appendicitis",
+    "symptoms": "lower right abdominal pain, nausea, vomiting, fever, loss of appetite",
+    "causes": "Caused by inflammation of the appendix, often due to blockage or infection.",
+    "precautions": "Avoid eating or drinking and seek urgent medical evaluation.",
+    "see_doctor": "Go to the emergency room immediately if appendicitis is suspected."
+  },
+  {
+    "condition": "Urinary Tract Infection",
+    "symptoms": "burning urination, frequent urination, lower abdominal pain, fever, cloudy urine",
+    "causes": "Usually caused by bacterial infection in the urinary tract.",
+    "precautions": "Drink plenty of water, maintain hygiene, and do not hold urine.",
+    "see_doctor": "Consult a doctor if fever, back pain, or worsening symptoms occur."
+  },
+  {
+    "condition": "Kidney Stones",
+    "symptoms": "severe side pain, blood in urine, nausea, vomiting, painful urination",
+    "causes": "Caused by mineral and salt deposits forming in the kidneys.",
+    "precautions": "Drink lots of water and avoid dehydration.",
+    "see_doctor": "Seek urgent medical help if pain is severe or urine is blocked."
+  },
+  {
+    "condition": "Menstrual Cramps",
+    "symptoms": "lower abdominal pain, back pain, nausea, fatigue, mood changes",
+    "causes": "Caused by uterine muscle contractions during menstruation.",
+    "precautions": "Rest, warm compress, hydration, and light movement may help.",
+    "see_doctor": "Consult a doctor if pain is unusually severe or disrupts daily life."
+  },
+  {
+    "condition": "PCOS",
+    "symptoms": "irregular periods, acne, weight gain, excess hair growth, hair thinning",
+    "causes": "A hormonal disorder affecting ovulation and metabolism.",
+    "precautions": "Maintain healthy diet, exercise, and follow medical advice.",
+    "see_doctor": "Consult a gynecologist if symptoms persist or worsen."
+  },
+  {
+    "condition": "Pregnancy Nausea",
+    "symptoms": "nausea, vomiting, fatigue, missed period, dizziness",
+    "causes": "Usually caused by hormonal changes during early pregnancy.",
+    "precautions": "Eat small frequent meals, stay hydrated, and rest well.",
+    "see_doctor": "See a doctor if vomiting is severe or dehydration occurs."
+  },
+  {
+    "condition": "Allergic Rhinitis",
+    "symptoms": "sneezing, itchy nose, runny nose, watery eyes, congestion",
+    "causes": "Triggered by allergens such as pollen, dust, mold, or pet dander.",
+    "precautions": "Avoid allergens, keep surroundings clean, and use prescribed allergy medication.",
+    "see_doctor": "Consult a doctor if symptoms are frequent or severe."
+  },
+  {
+    "condition": "Skin Allergy",
+    "symptoms": "itching, rash, redness, swelling, hives",
+    "causes": "Can be triggered by foods, medicines, insect bites, or contact irritants.",
+    "precautions": "Avoid suspected triggers, keep skin cool, and avoid scratching.",
+    "see_doctor": "Seek medical help if swelling affects breathing or rash becomes severe."
+  },
+  {
+    "condition": "Fungal Infection",
+    "symptoms": "itching, skin rash, redness, scaling, irritation",
+    "causes": "Caused by fungal growth on the skin, often in warm or moist areas.",
+    "precautions": "Keep skin dry, maintain hygiene, and avoid sharing towels or clothes.",
+    "see_doctor": "Consult a doctor if rash spreads or does not improve."
+  },
+  {
+    "condition": "Eczema",
+    "symptoms": "itching, dry skin, rash, redness, skin irritation",
+    "causes": "Linked to skin barrier problems, allergies, and inflammation.",
+    "precautions": "Moisturize regularly, avoid irritants, and keep skin hydrated.",
+    "see_doctor": "See a doctor if rash is severe, infected, or persistent."
+  },
+  {
+    "condition": "Psoriasis",
+    "symptoms": "red patches, scaling, itching, dry skin, joint discomfort",
+    "causes": "An immune-related skin condition causing rapid skin cell buildup.",
+    "precautions": "Moisturize skin, avoid triggers, and follow prescribed treatment.",
+    "see_doctor": "Consult a dermatologist if symptoms worsen or affect daily life."
+  },
+  {
+    "condition": "Conjunctivitis",
+    "symptoms": "red eyes, itching eyes, watery eyes, discharge, irritation",
+    "causes": "Can be caused by viral, bacterial, or allergic inflammation of the eye.",
+    "precautions": "Avoid touching eyes, maintain hygiene, and do not share towels.",
+    "see_doctor": "See a doctor if pain, blurred vision, or severe redness occurs."
+  },
+  {
+    "condition": "Ear Infection",
+    "symptoms": "ear pain, fever, hearing difficulty, discharge, irritability",
+    "causes": "Usually caused by bacterial or viral infection in the ear.",
+    "precautions": "Avoid inserting objects in ear and follow treatment advice.",
+    "see_doctor": "Consult a doctor if fever, discharge, or severe pain occurs."
+  },
+  {
+    "condition": "Throat Infection",
+    "symptoms": "sore throat, fever, difficulty swallowing, swollen glands, cough",
+    "causes": "Can be caused by viral or bacterial infection.",
+    "precautions": "Warm fluids, rest, and avoid cold foods or irritants.",
+    "see_doctor": "See a doctor if swallowing becomes difficult or fever persists."
+  },
+  {
+    "condition": "Tonsillitis",
+    "symptoms": "sore throat, fever, swollen tonsils, bad breath, difficulty swallowing",
+    "causes": "Caused by viral or bacterial infection of the tonsils.",
+    "precautions": "Warm fluids, rest, and maintain hydration.",
+    "see_doctor": "Consult a doctor if symptoms are severe or recurrent."
+  },
+  {
+    "condition": "Dengue",
+    "symptoms": "high fever, headache, body pain, rash, nausea, weakness",
+    "causes": "Caused by dengue virus transmitted by mosquito bites.",
+    "precautions": "Stay hydrated, rest, avoid mosquito exposure, and monitor symptoms.",
+    "see_doctor": "Seek immediate care if bleeding, severe weakness, or abdominal pain occurs."
+  },
+  {
+    "condition": "Malaria",
+    "symptoms": "fever, chills, sweating, headache, vomiting, body pain",
+    "causes": "Caused by Plasmodium parasites transmitted through mosquito bites.",
+    "precautions": "Use mosquito protection, rest, and seek early treatment.",
+    "see_doctor": "Consult a doctor immediately if malaria is suspected."
+  },
+  {
+    "condition": "Typhoid",
+    "symptoms": "fever, stomach pain, weakness, headache, diarrhea, constipation",
+    "causes": "Caused by Salmonella typhi infection, often through contaminated food or water.",
+    "precautions": "Drink safe water, eat hygienic food, and rest well.",
+    "see_doctor": "See a doctor if persistent fever or severe weakness occurs."
+  },
+  {
+    "condition": "Hepatitis",
+    "symptoms": "yellow eyes, yellow skin, fatigue, nausea, abdominal pain, dark urine",
+    "causes": "Caused by liver inflammation due to viruses, alcohol, or other liver injury.",
+    "precautions": "Avoid alcohol, rest, hydrate, and seek medical evaluation.",
+    "see_doctor": "Consult a doctor immediately if jaundice appears."
+  },
+  {
+    "condition": "Jaundice",
+    "symptoms": "yellow eyes, yellow skin, fatigue, dark urine, abdominal discomfort",
+    "causes": "Often linked to liver disease, bile duct problems, or excess bilirubin.",
+    "precautions": "Avoid alcohol and seek medical evaluation promptly.",
+    "see_doctor": "See a doctor as soon as jaundice is noticed."
+  },
+  {
+    "condition": "Heart Attack",
+    "symptoms": "chest pain, sweating, shortness of breath, nausea, left arm pain, dizziness",
+    "causes": "Caused by blocked blood flow to the heart muscle.",
+    "precautions": "This is a medical emergency. Rest and seek emergency help immediately.",
+    "see_doctor": "Call emergency services immediately if heart attack symptoms are present."
+  },
+  {
+    "condition": "Angina",
+    "symptoms": "chest pain, chest pressure, shortness of breath, fatigue, arm discomfort",
+    "causes": "Caused by reduced blood flow to the heart muscle.",
+    "precautions": "Avoid exertion and seek medical evaluation.",
+    "see_doctor": "Consult a doctor urgently if chest pain is recurrent or worsening."
+  },
+  {
+    "condition": "Stroke",
+    "symptoms": "sudden weakness, facial droop, slurred speech, confusion, dizziness, headache",
+    "causes": "Caused by interrupted blood flow or bleeding in the brain.",
+    "precautions": "This is a medical emergency and needs immediate hospital care.",
+    "see_doctor": "Call emergency services immediately if stroke symptoms appear."
+  },
+  {
+    "condition": "Epilepsy",
+    "symptoms": "seizures, loss of consciousness, staring spells, confusion, jerking movements",
+    "causes": "Caused by abnormal electrical activity in the brain.",
+    "precautions": "Ensure safety during seizures and avoid dangerous environments.",
+    "see_doctor": "Seek medical evaluation for any seizure episode."
+  },
+  {
+    "condition": "Anxiety Disorder",
+    "symptoms": "restlessness, rapid heartbeat, sweating, fear, chest tightness, overthinking",
+    "causes": "Can be related to stress, mental health factors, or life events.",
+    "precautions": "Practice breathing exercises, sleep well, and reduce stress triggers.",
+    "see_doctor": "Consult a doctor or mental health professional if symptoms interfere with daily life."
+  },
+  {
+    "condition": "Depression",
+    "symptoms": "sadness, fatigue, sleep problems, loss of interest, low mood, appetite changes",
+    "causes": "Can result from biological, psychological, and social factors.",
+    "precautions": "Seek support, maintain routine, sleep well, and avoid isolation.",
+    "see_doctor": "Consult a professional if symptoms persist or affect daily functioning."
+  },
+  {
+    "condition": "Insomnia",
+    "symptoms": "difficulty sleeping, fatigue, irritability, poor concentration, headache",
+    "causes": "Often caused by stress, anxiety, poor sleep habits, or health conditions.",
+    "precautions": "Maintain a sleep routine, reduce screen time, and avoid caffeine late in the day.",
+    "see_doctor": "See a doctor if sleep problems are frequent or severe."
+  },
+  {
+    "condition": "Obesity",
+    "symptoms": "weight gain, fatigue, joint pain, shortness of breath, snoring",
+    "causes": "Can result from excess calorie intake, low activity, hormonal issues, or genetics.",
+    "precautions": "Follow a balanced diet, regular exercise, and healthy sleep habits.",
+    "see_doctor": "Consult a doctor for persistent weight-related health concerns."
+  },
+  {
+    "condition": "Arthritis",
+    "symptoms": "joint pain, stiffness, swelling, reduced movement, inflammation",
+    "causes": "Can be due to wear and tear, autoimmune disease, or joint inflammation.",
+    "precautions": "Gentle exercise, weight management, and medical treatment can help.",
+    "see_doctor": "Consult a doctor if pain or swelling persists."
+  },
+  {
+    "condition": "Back Pain",
+    "symptoms": "lower back pain, stiffness, muscle tightness, reduced movement",
+    "causes": "Can result from muscle strain, poor posture, injury, or spinal problems.",
+    "precautions": "Maintain posture, avoid heavy lifting, and use proper back support.",
+    "see_doctor": "See a doctor if pain is severe, persistent, or causes weakness."
+  },
+  {
+    "condition": "Sprain",
+    "symptoms": "joint pain, swelling, bruising, difficulty moving, tenderness",
+    "causes": "Caused by overstretching or tearing of ligaments.",
+    "precautions": "Rest, ice, compression, and elevation can help.",
+    "see_doctor": "Consult a doctor if swelling or pain is severe or walking is difficult."
+  }
+]
