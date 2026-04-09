@@ -30,10 +30,16 @@ RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 # If a backend requirements file exists (lifeline-ai/backend/requirements.txt), install it too
-COPY lifeline-ai/backend/requirements.txt ./lifeline-backend-requirements.txt
-RUN if [ -f ./lifeline-backend-requirements.txt ]; then \
-      pip install --no-cache-dir -r ./lifeline-backend-requirements.txt; \
-    fi
+COPY backend/requirements.txt ./backend-requirements.txt
+RUN if [ -f ./backend-requirements.txt ]; then \
+            pip install --no-cache-dir -r ./backend-requirements.txt; \
+        fi
+
+# Backwards-compat: install lifeline-ai/backend/requirements.txt if present
+COPY lifeline-ai/backend/requirements.txt ./lifeline-ai-backend-requirements.txt
+RUN if [ -f ./lifeline-ai-backend-requirements.txt ]; then \
+                    pip install --no-cache-dir -r ./lifeline-ai-backend-requirements.txt; \
+                fi
 
 # ── Copy application source safely ────────────────────────────────────────────
 # Copying the full project avoids file-not-found build breaks and is HF-Spaces-friendly.
@@ -43,9 +49,8 @@ COPY . .
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get update && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/* \
-    && cd lifeline-ai \
-    && npm ci --no-audit --no-fund || npm install \
-    && npm run build
+    && npm ci --prefix lifeline-ai --no-audit --no-fund || npm install --prefix lifeline-ai \
+    && npm run build --prefix lifeline-ai
 
 # ── Non-root user for security ────────────────────────────────────────────────
 RUN adduser --disabled-password --gecos "" appuser
@@ -62,4 +67,4 @@ EXPOSE 7860
 
 # Default command: start backend on 8000 (background) and run Next.js frontend on 7860
 # The frontend proxies /api to the backend via next.config.js rewrites.
-CMD ["sh", "-c", "uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 & cd lifeline-ai && exec npm run start -- -p 7860"]
+CMD ["sh", "-c", "uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 & exec npm run start --prefix lifeline-ai -- -p 7860"]
