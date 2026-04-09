@@ -1,3 +1,12 @@
+---
+title: LifeLine AI
+emoji: "🏥"
+colorFrom: blue
+colorTo: red
+sdk: docker
+pinned: false
+---
+
 # MediRoute OpenEnv
 
 **MediRoute OpenEnv** is a deterministic **healthcare triage + hospital routing** simulation environment designed for evaluating agent decision-making under realistic clinical constraints.
