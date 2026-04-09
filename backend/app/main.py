@@ -31,6 +31,16 @@ def startup_event() -> None:
     logger.info("LifeLine AI API started successfully")
 
 
+@app.get("/")
+async def home():
+    return {
+        "status": "live",
+        "project": "LifeLine AI",
+        "message": "Meta Hackathon deployment is running successfully",
+        "endpoints": ["/health", "/run-benchmark"],
+    }
+
+
 @app.get("/health")
 def health() -> Dict[str, str]:
     return {"status": "ok", "project": "LifeLine AI"}
