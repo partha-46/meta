@@ -26,6 +26,12 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
+# If a backend requirements file exists (lifeline-ai/backend/requirements.txt), install it too
+COPY lifeline-ai/backend/requirements.txt ./lifeline-backend-requirements.txt
+RUN if [ -f ./lifeline-backend-requirements.txt ]; then \
+      pip install --no-cache-dir -r ./lifeline-backend-requirements.txt; \
+    fi
+
 # ── Copy application source safely ────────────────────────────────────────────
 # Copying the full project avoids file-not-found build breaks and is HF-Spaces-friendly.
 COPY . .
@@ -40,6 +46,10 @@ ENV OPENAI_API_KEY="EMPTY" \
     MODEL_NAME="gpt-4o-mini" \
     HF_TOKEN=""
 
-# ── Default command: run baseline inference across all tasks ──────────────────
-# LLM agent can be enabled by passing: --agent llm and setting API env vars.
-CMD ["python", "-u", "inference.py", "--difficulty", "all", "--agent", "rules"]
+# ── Expose the port expected by Hugging Face Spaces and run the backend web server
+EXPOSE 7860
+
+# Default command: start the FastAPI backend (lifeline-ai backend) on port 7860.
+# This keeps the container running as a web service compatible with Spaces (sdk: docker).
+# It will cd into the backend folder and run uvicorn. Override at runtime as needed.
+CMD ["sh", "-c", "uvicorn backend.app.main:app --host 0.0.0.0 --port 7860"]
