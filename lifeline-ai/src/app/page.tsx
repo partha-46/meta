@@ -72,8 +72,8 @@ export default function Home() {
 
   async function reverseGeocodeAndSet(lat: number, lng: number) {
     try {
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "";
-  const url = `${apiBase}/reverse-geocode?lat=${encodeURIComponent(lat)}&lng=${encodeURIComponent(lng)}`;
+      const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "";
+      const url = `${apiBase}/reverse-geocode?lat=${encodeURIComponent(lat)}&lng=${encodeURIComponent(lng)}`;
       const res = await fetch(url);
       if (!res.ok) throw new Error("geocode failed");
       const j = await res.json();
