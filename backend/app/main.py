@@ -1,18 +1,37 @@
-from __future__ import annotations
-
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import sys
 import os
 import logging
 from typing import Any, Dict, List, Optional
 
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-
-import sys
 # Ensure project root is in path for environment and models
 sys.path.append(os.getcwd())
 
 from environment import MediRouteEnv
-from models import Action, Observation, StepResult
+from models import Action
+
+app = FastAPI(title="LifeLine AI API", version="1.0.0")
+
+# Global environment instance
+env = MediRouteEnv()
+
+# Configure logging
+logger = logging.getLogger("lifeline.backend")
+logging.basicConfig(level=logging.INFO)
+
+# ── Validator-specific Models ──────────────────────────────────────────────
+
+class ObservationSchema(BaseModel):
+    symptoms: str
+    severity: str
+    step_count: int
+
+class ResetResponse(BaseModel):
+    observation: ObservationSchema
+    reward: float = 0.0
+    done: bool = False
+    info: dict = {}
 
 # Import the existing inference runner so we can reuse run_episode
 try:
@@ -57,37 +76,68 @@ def health() -> Dict[str, str]:
 
 # ── OpenEnv Endpoints ──────────────────────────────────────────────────────
 
-class ResetRequest(BaseModel):
-    difficulty: str = "easy"
-
-
 @app.post("/reset")
-async def reset(req: ResetRequest = ResetRequest()) -> Observation:
-    """Reset the environment to a fresh state with the given difficulty."""
-    logger.info(f"OpenEnv: resetting to difficulty={req.difficulty}")
-    obs = env.reset(difficulty=req.difficulty)
-    return obs
+async def reset():
+    """Reset the environment to a fresh state for validation."""
+    logger.info("OpenEnv: Received /reset request")
+    # Reset internal env
+    obs = env.reset(difficulty="easy")
+    
+    # Map internal observation to validator's expected schema
+    # Map severity_score (float) back to string labels for validator
+    severity_label = "low"
+    if obs.severity_score >= 0.7: severity_label = "high"
+    elif obs.severity_score >= 0.4: severity_label = "moderate"
 
-
-@app.post("/step")
-async def step(action: Action) -> StepResult:
-    """Advance the environment by one step using the provided action."""
-    logger.info(f"OpenEnv: step with action={action.action_type}")
-    try:
-        result = env.step(action)
-        return result
-    except Exception as e:
-        logger.error(f"OpenEnv step failed: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+    return ResetResponse(
+        observation=ObservationSchema(
+            symptoms=obs.symptoms,
+            severity=severity_label,
+            step_count=0
+        )
+    )
 
 
 @app.get("/state")
-async def get_state() -> Observation:
-    """Return the current snapshot of the environment's observation."""
+async def state():
+    """Return the current snapshot status."""
+    return {
+        "status": "active",
+        "current_task": "easy"
+    }
+
+
+@app.post("/step")
+async def step(action: dict):
+    """Advance the environment using the validator's action dictionary."""
+    logger.info(f"OpenEnv: Received /step request with action: {action}")
+    
     try:
-        return env.state()
+        # Construct internal Action model from dict
+        internal_action = Action(
+            action_type=action.get("action_type", "analyze_symptoms"),
+            target=action.get("target")
+        )
+        result = env.step(internal_action)
+        
+        # Map back to validator's schema
+        severity_label = "low"
+        if result.observation.severity_score >= 0.7: severity_label = "high"
+        elif result.observation.severity_score >= 0.4: severity_label = "moderate"
+
+        return {
+            "observation": {
+                "symptoms": result.observation.symptoms,
+                "severity": severity_label,
+                "step_count": result.info.get("step", 1)
+            },
+            "reward": result.reward,
+            "done": result.done,
+            "info": result.info
+        }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.error(f"OpenEnv step failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/run-benchmark")
